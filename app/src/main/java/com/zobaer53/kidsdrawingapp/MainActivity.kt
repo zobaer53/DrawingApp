@@ -105,12 +105,14 @@ class MainActivity : AppCompatActivity() {
         ibSave.setOnClickListener{
             //check if permission is allowed
             if (isReadStorageAllowed()){
+                showProgressDialog()
                 //launch a coroutine block
                 lifecycleScope.launch{
                     //reference the frame layout
                     val flDrawingView:FrameLayout = findViewById(R.id.fl_drawing_view_container)
                     //Save the image to the device
                     saveBitmapFile(getBitmapFromView(flDrawingView))
+
                 }
             }
         }
@@ -299,26 +301,30 @@ class MainActivity : AppCompatActivity() {
                     // absoluteFile : Returns the absolute form of this abstract pathname.
                     // File.separator : The system-dependent default name-separator character. This string contains a single character.
 
-                    val fo =
-                        FileOutputStream(f) // Creates a file output stream to write to the file represented by the specified object.
+                    val fo = FileOutputStream(f) // Creates a file output stream to write to the file represented by the specified object.
                     fo.write(bytes.toByteArray()) // Writes bytes from the specified byte array to this file output stream.
                     fo.close() // Closes this file output stream and releases any system resources associated with this stream. This file output stream may no longer be used for writing bytes.
                     result = f.absolutePath // The file absolute path is return as a result.
                     //We switch from io to ui thread to show a toast
                     runOnUiThread {
+                        cancelProgressDialog()
                         if (result.isNotEmpty()) {
+
                             Toast.makeText(
                                 this@MainActivity,
                                 "File saved successfully :$result",
                                 Toast.LENGTH_SHORT
                             ).show()
                             shareImage(result)
+
                         } else {
+
                             Toast.makeText(
                                 this@MainActivity,
                                 "Something went wrong while saving the file.",
                                 Toast.LENGTH_SHORT
                             ).show()
+
                         }
                     }
                 } catch (e: Exception) {
