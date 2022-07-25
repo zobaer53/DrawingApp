@@ -5,11 +5,15 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.media.MediaScannerConnection
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
@@ -20,6 +24,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.zobaer53.kidsdrawingapp.roomdb.AppDatabase
+
+import com.zobaer53.kidsdrawingapp.roomdb.BitmapsEntity
+import com.zobaer53.kidsdrawingapp.roomdb.DatabaseHelperImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -28,11 +38,15 @@ import java.io.File
 import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
+
+    private var dbHelper: DatabaseHelperImpl? = null
+    private lateinit var bitmapList: List<BitmapsEntity>
+
     private var drawingView: DrawingView? = null
     private var mImageButtonCurrentPaint: ImageButton? = null // A variable for current color is picked from color pallet.
     var customProgressDialog: Dialog? = null
 
-    val openGalleryLauncher:ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->
+    private val openGalleryLauncher:ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
         if (result.resultCode == RESULT_OK && result.data != null){
             val imageBackground:ImageView = findViewById(R.id.iv_background)
             imageBackground.setImageURI(result.data?.data)
@@ -42,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     /** create an ActivityResultLauncher with MultiplePermissions since we are requesting
      * both read and write
      */
-    val requestPermission: ActivityResultLauncher<Array<String>> =
+    private val requestPermission: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             permissions.entries.forEach {
                 val perMissionName = it.key
@@ -70,11 +84,11 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        dbHelper = DatabaseHelperImpl(AppDatabase.getDatabase(applicationContext))
+
         drawingView = findViewById(R.id.drawing_view)
         val ibBrush: ImageButton = findViewById(R.id.ib_brush)
         drawingView?.setSizeForBrush(20.toFloat())
@@ -106,16 +120,40 @@ class MainActivity : AppCompatActivity() {
             //check if permission is allowed
             if (isReadStorageAllowed()){
                 showProgressDialog()
-                //launch a coroutine block
-                lifecycleScope.launch{
-                    //reference the frame layout
-                    val flDrawingView:FrameLayout = findViewById(R.id.fl_drawing_view_container)
-                    //Save the image to the device
-                    saveBitmapFile(getBitmapFromView(flDrawingView))
+                //room db
 
-                }
+
+                //reference the frame layout
+                val flDrawingView:FrameLayout = findViewById(R.id.fl_drawing_view_container)
+                //Save the image to the device
+                bitmapList = ArrayList()
+                val imgLink = saveBitmapFile(getBitmapFromView(flDrawingView))
+               // bitmapList.toMutableList().add(BitmapsEntity(imgLink))
+                dbHelper!!.insertAll(BitmapsEntity(imgLink))
+
+                //Log.i("Tag","uri1 $bitmapList")
+                Log.i("Tag","uri1 ${dbHelper!!.getAll()}")
+                Log.i("Tag","uri $imgLink}")
+
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.about -> Toast.makeText(this,"About Selected",Toast.LENGTH_SHORT).show()
+            R.id.settings -> {Toast.makeText(this,"Settings Selected",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,MyDrawings::class.java)
+                startActivity(intent)
+            }
+            R.id.exit -> Toast.makeText(this,"Exit Selected",Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     /**
@@ -153,7 +191,7 @@ class MainActivity : AppCompatActivity() {
         if (view !== mImageButtonCurrentPaint) {
             // Update the color
             val imageButton = view as ImageButton
-            // Here the tag is used for swaping the current color with previous color.
+            // Here the tag is used for swapping the current color with previous color.
             // The tag stores the selected view
             val colorTag = imageButton.tag.toString()
             // The color is set as per the selected tag here.
@@ -241,7 +279,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Create bitmap from view and returns it
      */
-    private fun getBitmapFromView(view: View): Bitmap {
+    private  fun getBitmapFromView(view: View): Bitmap {
 
         //Define a bitmap with the same size as the view.
         // CreateBitmap : Returns a mutable bitmap with the specified width and height
@@ -259,14 +297,16 @@ class MainActivity : AppCompatActivity() {
         }
         // draw the view on the canvas
         view.draw(canvas)
+
+
+
         //return the bitmap
         return returnedBitmap
     }
 
     // TODO(Step 2 : A method to save the image.)
-    private suspend fun saveBitmapFile(mBitmap: Bitmap?):String{
+    private  fun saveBitmapFile(mBitmap: Bitmap?):String{
         var result = ""
-        withContext(Dispatchers.IO) {
             if (mBitmap != null) {
 
                 try {
@@ -305,6 +345,9 @@ class MainActivity : AppCompatActivity() {
                     fo.write(bytes.toByteArray()) // Writes bytes from the specified byte array to this file output stream.
                     fo.close() // Closes this file output stream and releases any system resources associated with this stream. This file output stream may no longer be used for writing bytes.
                     result = f.absolutePath // The file absolute path is return as a result.
+
+
+
                     //We switch from io to ui thread to show a toast
                     runOnUiThread {
                         cancelProgressDialog()
@@ -312,13 +355,13 @@ class MainActivity : AppCompatActivity() {
 
                             Toast.makeText(
                                 this@MainActivity,
-                                "File saved successfully :$result",
+                                "File saved successfully :$f",
                                 Toast.LENGTH_SHORT
                             ).show()
                             shareImage(result)
+                           drawingView!!.onSavedFile()
 
                         } else {
-
                             Toast.makeText(
                                 this@MainActivity,
                                 "Something went wrong while saving the file.",
@@ -332,7 +375,7 @@ class MainActivity : AppCompatActivity() {
                     e.printStackTrace()
                 }
             }
-        }
+
         return result
     }
 
@@ -370,9 +413,7 @@ class MainActivity : AppCompatActivity() {
             // with these differences in behavior:
         }
         // END
-
     }
-
     /**
      * Method is used to show the Custom Progress Dialog.
      */
