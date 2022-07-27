@@ -1,5 +1,5 @@
 # DrawingApp
-Simple drawing app with option to selected size of brush, color, background image from gallery and save to device.
+Simple drawing app with option to selected size of brush, color, background image from gallery and save to device, also store link in RoomDB.
 
 # Video
 
