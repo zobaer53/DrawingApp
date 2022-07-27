@@ -13,6 +13,11 @@
     <color name="green">#00ff00</color>
     <color name="blue">#0000ff</color>
     <color name="yellow">#ffff00</color>
-    <color name="lollipop"> #35a79c</color>
+    <color name="lollipop">#35a79c</color>
     <color name="random">#A349B1</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
 </resources>

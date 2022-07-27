@@ -1,17 +1,15 @@
 package com.zobaer53.kidsdrawingapp
 
 
-import android.app.Activity
+
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
 import com.zobaer53.kidsdrawingapp.roomdb.AppDatabase
 import com.zobaer53.kidsdrawingapp.roomdb.BitmapsEntity
 import com.zobaer53.kidsdrawingapp.roomdb.DatabaseHelperImpl
@@ -19,7 +17,7 @@ import com.zobaer53.kidsdrawingapp.roomdb.DatabaseHelperImpl
 
 class RecyclerViewAdapter(private val context:Context, private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
-   val dbHelper = DatabaseHelperImpl(AppDatabase.getDatabase(context))
+   private val dbHelper = DatabaseHelperImpl(AppDatabase.getDatabase(context))
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,7 +36,7 @@ class RecyclerViewAdapter(private val context:Context, private val mList: List<I
         Log.i("Tag","adapter1 ${itemsViewModel.image}")
         Glide.with(context).load(itemsViewModel.image).into(holder.imageView);
         holder.imageView.setOnClickListener{
-            mList.drop(position)
+            (mList as MutableList).removeAt(position)
             notifyItemRemoved(position)
              val db = AppDatabase.getDatabase(context).bitmapDao()
             db.delete()

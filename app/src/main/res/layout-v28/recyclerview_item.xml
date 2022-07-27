@@ -12,6 +12,7 @@
         app:cardCornerRadius="5dp"
 
         app:cardElevation="3dp"
+        android:outlineAmbientShadowColor="@color/blue"
         android:background="@color/light_blue_A200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
