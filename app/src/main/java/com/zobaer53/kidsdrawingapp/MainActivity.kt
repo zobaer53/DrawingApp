@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this,MyDrawings::class.java)
                 startActivity(intent)
             }
-            R.id.exit -> Toast.makeText(this,"Exit Selected",Toast.LENGTH_SHORT).show()
+            R.id.exit -> finishAffinity()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -359,7 +359,9 @@ class MainActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                             shareImage(result)
+                            val flDrawingView:FrameLayout = findViewById(R.id.fl_drawing_view_container)
                            drawingView!!.onSavedFile()
+                            flDrawingView.setBackgroundResource(0)
 
                         } else {
                             Toast.makeText(
