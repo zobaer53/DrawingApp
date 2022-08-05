@@ -3,6 +3,7 @@ package com.zobaer53.kidsdrawingapp
 import androidx.appcompat.app.AppCompatActivity
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -30,6 +31,10 @@ class SplashscreenActivity : AppCompatActivity() {
         supportActionBar?.title = ""
         val imageView = findViewById<LottieAnimationView>(R.id.SplashScreenImage)
         imageView.playAnimation()
+        val typeface: Typeface =
+            Typeface.createFromAsset(assets, "carbon bl.ttf")
+        val tv_app_name = findViewById<TextView>(R.id.textView2)
+        tv_app_name.typeface = typeface
 
 
         // we used the postDelayed(Runnable, time) method
