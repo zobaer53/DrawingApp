@@ -83,4 +83,7 @@ dependencies {
     
     // AdMob - Using a version compatible with Kotlin 1.9.20
     implementation 'com.google.android.gms:play-services-ads:22.6.0'
+    
+    // PhotoView for image zooming
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 }

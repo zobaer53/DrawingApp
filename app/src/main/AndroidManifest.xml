@@ -43,6 +43,10 @@
             android:name=".MyDrawings"
             android:exported="false" />
         <activity
+            android:name=".DrawingViewerActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">

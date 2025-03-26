@@ -1,5 +1,6 @@
 package com.pijung.kidsdrawingapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,14 @@ class DrawingAdapter(private val activity: MyDrawings) : ListAdapter<BitmapsEnti
                 .load(bitmapEntity.bitmap)
                 .into(imageView)
 
+            // Set click listener on the image to open viewer
+            imageView.setOnClickListener {
+                val intent = Intent(activity, DrawingViewerActivity::class.java).apply {
+                    putExtra("IMAGE_PATH", bitmapEntity.bitmap)
+                }
+                activity.startActivity(intent)
+            }
+
             deleteButton.setOnClickListener {
                 activity.deleteDrawing(bitmapEntity)
             }
@@ -52,7 +61,7 @@ class DrawingAdapter(private val activity: MyDrawings) : ListAdapter<BitmapsEnti
 
     private class DrawingDiffCallback : DiffUtil.ItemCallback<BitmapsEntity>() {
         override fun areItemsTheSame(oldItem: BitmapsEntity, newItem: BitmapsEntity): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.bitmap == newItem.bitmap
         }
 
         override fun areContentsTheSame(oldItem: BitmapsEntity, newItem: BitmapsEntity): Boolean {
