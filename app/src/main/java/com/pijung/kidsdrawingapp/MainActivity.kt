@@ -144,6 +144,16 @@ class MainActivity : AppCompatActivity() {
         // TODO(Step 3 : Adding an click event to save or exporting the image to your phone storage.)
         ibSave.setOnClickListener {
             if (isReadStorageAllowed()) {
+                // Check if there's any drawing content
+                if (!drawingView?.hasDrawing()!!) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Please draw something before saving",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
+                }
+
                 showProgressDialog()
                 try {
                     val flDrawingView:FrameLayout = findViewById(R.id.fl_drawing_view_container)
@@ -162,7 +172,6 @@ class MainActivity : AppCompatActivity() {
                                         "Drawing saved successfully!",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    shareImage(imgLink)
                                     drawingView!!.onSavedFile()
                                     flDrawingView.setBackgroundResource(0)
                                     
