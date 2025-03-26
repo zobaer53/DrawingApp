@@ -145,5 +145,9 @@ class DrawingView(context: Context, attrs: AttributeSet?) : View(context, attrs)
         invalidate()
     }
 
+    fun hasDrawing(): Boolean {
+        return mPaths.isNotEmpty() || !mDrawPath!!.isEmpty
+    }
+
     internal inner class CustomPath(var color: Int, var brushThickness: Float) : Path()
 } 
