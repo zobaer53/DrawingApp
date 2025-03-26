@@ -14,7 +14,7 @@ class DatabaseHelperImpl(private val database: RoomDatabase) {
         bitmapsDao.delete(bitmaps)
     }
 
-    fun getAll(): List<BitmapsEntity> {
+    suspend fun getAll(): List<BitmapsEntity> {
         return bitmapsDao.getAll()
     }
 } 

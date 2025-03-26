@@ -140,21 +140,32 @@ class MainActivity : AppCompatActivity() {
                     if (imgLink.isNotEmpty()) {
                         // Use coroutine to perform database operation
                         lifecycleScope.launch {
-                            dbHelper!!.insertAll(BitmapsEntity(bitmap = imgLink))
-                            runOnUiThread {
-                                cancelProgressDialog()
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    "Drawing saved successfully!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                shareImage(imgLink)
-                                drawingView!!.onSavedFile()
-                                flDrawingView.setBackgroundResource(0)
-                                
-                                // Show interstitial ad after saving
-                                adManager.showInterstitialAd(this@MainActivity) {
-                                    // Ad dismissed callback
+                            try {
+                                dbHelper!!.insertAll(BitmapsEntity(bitmap = imgLink))
+                                runOnUiThread {
+                                    cancelProgressDialog()
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "Drawing saved successfully!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    shareImage(imgLink)
+                                    drawingView!!.onSavedFile()
+                                    flDrawingView.setBackgroundResource(0)
+                                    
+                                    // Show interstitial ad after saving
+                                    adManager.showInterstitialAd(this@MainActivity) {
+                                        // Ad dismissed callback
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                runOnUiThread {
+                                    cancelProgressDialog()
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "Error saving to database: ${e.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             }
                         }
