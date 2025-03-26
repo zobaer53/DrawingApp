@@ -144,15 +144,29 @@ class MyDrawings : AppCompatActivity() {
         try {
             val file = File(bitmapEntity.bitmap)
             if (file.exists()) {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.type = "image/png"
-                intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
-                startActivity(Intent.createChooser(intent, "Share Drawing"))
+                val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+                val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                    type = "image/png"
+                    putExtra(Intent.EXTRA_STREAM, getImageUri(bitmap))
+                }
+                startActivity(Intent.createChooser(shareIntent, "Share Drawing"))
             } else {
                 Toast.makeText(this, "Drawing file not found", Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
             Toast.makeText(this, "Error sharing drawing: ${e.message}", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun getImageUri(bitmap: Bitmap): Uri {
+        val bytes = java.io.ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, bytes)
+        val path = android.provider.MediaStore.Images.Media.insertImage(
+            contentResolver,
+            bitmap,
+            "Drawing_${System.currentTimeMillis()}",
+            "Drawing from Kids Drawing App"
+        )
+        return Uri.parse(path)
     }
 } 
