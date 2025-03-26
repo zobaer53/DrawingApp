@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.media.MediaScannerConnection
@@ -41,6 +42,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bitmapList: List<BitmapsEntity>
     private lateinit var adManager: AdManager
     private lateinit var bannerAdView: AdView
+    private var isEditMode = false
+    private var currentEditingPath: String? = null
 
     private var drawingView: DrawingView? = null
     private var mImageButtonCurrentPaint: ImageButton? = null // A variable for current color is picked from color pallet.
@@ -89,6 +92,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
+        // Check if we're in edit mode
+        isEditMode = intent.getBooleanExtra("EDIT_MODE", false)
+        currentEditingPath = intent.getStringExtra("IMAGE_PATH")
+        
         // Initialize AdMob
         adManager = AdManager.getInstance(this)
         adManager.initialize()
@@ -113,6 +120,12 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.pallet_selected
             )
         )
+
+        // Load existing drawing if in edit mode
+        if (isEditMode && currentEditingPath != null) {
+            loadExistingDrawing(currentEditingPath!!)
+        }
+
         ibBrush.setOnClickListener {
             showBrushSizeChooserDialog()
         }
@@ -471,6 +484,24 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         bannerAdView.destroy()
         super.onDestroy()
+    }
+
+    private fun loadExistingDrawing(path: String) {
+        try {
+            val bitmap = BitmapFactory.decodeFile(path)
+            if (bitmap != null) {
+                // Wait for the view to be measured and layout to be complete
+                drawingView?.post {
+                    drawingView?.post {
+                        drawingView?.loadBitmap(bitmap)
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Error loading drawing", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error loading drawing: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

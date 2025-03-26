@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import java.util.*
+import androidx.core.graphics.createBitmap
 
 class DrawingView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 
@@ -38,20 +39,28 @@ class DrawingView(context: Context, attrs: AttributeSet?) : View(context, attrs)
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        mCanvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-        canvas = Canvas(mCanvasBitmap!!)
+        if (w > 0 && h > 0) {
+            mCanvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+            canvas = Canvas(mCanvasBitmap!!)
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawBitmap(mCanvasBitmap!!, 0f, 0f, mCanvasPaint)
+        
+        // Draw the background bitmap first
+        mCanvasBitmap?.let { bitmap ->
+            canvas.drawBitmap(bitmap, 0f, 0f, mCanvasPaint)
+        }
 
+        // Draw all the paths
         for (path in mPaths) {
             mDrawPaint?.strokeWidth = path.brushThickness
             mDrawPaint?.color = path.color
             canvas.drawPath(path, mDrawPaint!!)
         }
 
+        // Draw the current path being drawn
         if (!mDrawPath!!.isEmpty) {
             mDrawPaint?.strokeWidth = mDrawPath!!.brushThickness
             mDrawPaint?.color = mDrawPath!!.color
@@ -103,6 +112,36 @@ class DrawingView(context: Context, attrs: AttributeSet?) : View(context, attrs)
     fun onSavedFile() {
         mPaths.clear()
         mUndoPaths.clear()
+        invalidate()
+    }
+
+    fun loadBitmap(bitmap: Bitmap) {
+        // Clear existing paths
+        mPaths.clear()
+        mUndoPaths.clear()
+        
+        // Calculate scaling to fit the bitmap to the view
+        val scaleX = width.toFloat() / bitmap.width
+        val scaleY = height.toFloat() / bitmap.height
+        val scale = minOf(scaleX, scaleY)
+        
+        // Calculate the position to center the bitmap
+        val scaledWidth = bitmap.width * scale
+        val scaledHeight = bitmap.height * scale
+        val left = (width - scaledWidth) / 2
+        val top = (height - scaledHeight) / 2
+        
+        // Create a new bitmap for the canvas with the same dimensions as the view
+        mCanvasBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        canvas = Canvas(mCanvasBitmap!!)
+        
+        // Draw white background first
+        canvas?.drawColor(Color.WHITE)
+        
+        // Draw the bitmap centered on the canvas
+        canvas?.drawBitmap(bitmap, left, top, null)
+        
+        // Invalidate the view to redraw
         invalidate()
     }
 

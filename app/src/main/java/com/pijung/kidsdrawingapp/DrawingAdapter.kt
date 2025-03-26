@@ -41,7 +41,11 @@ class DrawingAdapter(private val activity: MyDrawings) : ListAdapter<BitmapsEnti
             }
 
             editButton.setOnClickListener {
-                activity.editDrawing(bitmapEntity)
+                try {
+                    activity.editDrawing(bitmapEntity)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
     }
