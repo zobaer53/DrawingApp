@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.1.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.1.0)" variant="all" version="8.1.0">
+
+    <issue
+        id="ScopedStorage"
+        message="READ_EXTERNAL_STORAGE is deprecated (and is not granted) when targeting Android 13+. If you need to query or interact with MediaStore or media files on the shared storage, you should instead use one or more new storage permissions: `READ_MEDIA_IMAGES`, `READ_MEDIA_VIDEO` or `READ_MEDIA_AUDIO`."
+        errorLine1="    &lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; />"
+        errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="5"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details."
+        errorLine1="        targetSdk 34"
+        errorLine2="        ~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="14"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="Suspicious indentation: This is indented but is not continuing the previous expression (`var result`...)"
+        errorLine1="            if (mBitmap != null) {"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/zobaer53/kidsdrawingapp/MainActivity.kt"
+            line="310"
+            column="13"/>
+        <location
+            file="src/main/java/com/zobaer53/kidsdrawingapp/MainActivity.kt"
+            line="309"
+            column="9"
+            message="Previous statement here"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.15.0"
+        errorLine1="    implementation &apos;androidx.core:core-ktx:1.12.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="44"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0"
+        errorLine1="    implementation &apos;androidx.appcompat:appcompat:1.6.1&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="45"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.android.material:material than 1.11.0 is available: 1.12.0"
+        errorLine1="    implementation &apos;com.google.android.material:material:1.11.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="46"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.1"
+        errorLine1="    implementation &apos;androidx.constraintlayout:constraintlayout:2.1.4&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="47"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.2.1"
+        errorLine1="    androidTestImplementation &apos;androidx.test.ext:junit:1.1.5&apos;"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="50"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.6.1"
+        errorLine1="    androidTestImplementation &apos;androidx.test.espresso:espresso-core:3.5.1&apos;"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="51"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.6.2 is available: 2.8.7"
+        errorLine1="    implementation &quot;androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_ver&quot;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="52"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of org.jetbrains.kotlinx:kotlinx-serialization-json than 1.6.0 is available: 1.6.2"
+        errorLine1="    implementation &quot;org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0&quot;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="57"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="LockedOrientationActivity"
+        message="Expecting `android:screenOrientation=&quot;unspecified&quot;` or `&quot;fullSensor&quot;` for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices"
+        errorLine1="            android:screenOrientation=&quot;portrait&quot;>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="40"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="            android:onClick=&quot;paintClicked&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="54"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="            android:onClick=&quot;paintClicked&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="64"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="            android:onClick=&quot;paintClicked&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="74"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="            android:onClick=&quot;paintClicked&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="84"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="            android:onClick=&quot;paintClicked&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="94"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="            android:onClick=&quot;paintClicked&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="104"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="            android:onClick=&quot;paintClicked&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="114"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="            android:onClick=&quot;paintClicked&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="124"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="        &lt;item name=&quot;android:statusBarColor&quot; tools:targetApi=&quot;l&quot;>?attr/colorPrimaryVariant&lt;/item>"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-night/themes.xml"
+            line="13"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="        &lt;item name=&quot;android:statusBarColor&quot; tools:targetApi=&quot;l&quot;>?attr/colorPrimaryVariant&lt;/item>"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="13"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="KaptUsageInsteadOfKsp"
+        message="This library supports using KSP instead of kapt, which greatly improves performance. Learn more: https://developer.android.com/studio/build/migrate-to-ksp"
+        errorLine1="    kapt &quot;androidx.room:room-compiler:$roomVersion&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="55"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `#ECE4E4` with a theme that also paints a background (inferred theme is `@style/Theme.KidsDrawingApp`)"
+        errorLine1="    android:background=&quot;#ECE4E4&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `#ECE4E4` with a theme that also paints a background (inferred theme is `@style/Theme.KidsDrawingApp`)"
+        errorLine1="    android:background=&quot;#ECE4E4&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_my_drawings.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/light_blue_A200` with a theme that also paints a background (inferred theme is `@style/Theme_AppCompat_DayNight_NoActionBar`)"
+        errorLine1="    android:background=&quot;@color/light_blue_A200&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_splashscreen.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.brush_icon` appears to be unused"
+        errorLine1="&lt;vector android:height=&quot;24dp&quot; android:tint=&quot;#000000&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/brush_icon.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.purple_500` appears to be unused"
+        errorLine1="    &lt;color name=&quot;purple_500&quot;>#FF6200EE&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="4"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.black_overlay` appears to be unused"
+        errorLine1="    &lt;color name=&quot;black_overlay&quot;>#66000000&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="22"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.father` appears to be unused">
+        <location
+            file="src/main/res/drawable/father.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.dummy_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;dummy_button&quot;>Dummy Button&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="4"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.dummy_content` appears to be unused"
+        errorLine1="    &lt;string name=&quot;dummy_content&quot;>DUMMY\nCONTENT&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="5"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Widget_Theme_KidsDrawingApp_ActionBar_Fullscreen` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Widget.Theme.KidsDrawingApp.ActionBar.Fullscreen&quot; parent=&quot;Widget.AppCompat.ActionBar&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="3"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Widget_Theme_KidsDrawingApp_ButtonBar_Fullscreen` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Widget.Theme.KidsDrawingApp.ButtonBar.Fullscreen&quot; parent=&quot;&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="7"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_KidsDrawingApp_Fullscreen` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.KidsDrawingApp.Fullscreen&quot; parent=&quot;Theme.KidsDrawingApp&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="17"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable/ic_gallery.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable/ic_save.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable/ic_undo.png"/>
+    </issue>
+
+    <issue
+        id="MonochromeLauncherIcon"
+        message="The application adaptive icon is missing a monochrome tag"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="MonochromeLauncherIcon"
+        message="The application adaptive roundIcon is missing a monochrome tag"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/father.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/father.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_brush.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_brush.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_gallery.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_gallery.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_save.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_save.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_undo.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_undo.png"/>
+    </issue>
+
+    <issue
+        id="AlwaysShowAction"
+        message="Prefer &quot;`ifRoom`&quot; instead of &quot;`always`&quot;"
+        errorLine1="        app:showAsAction=&quot;always&quot;>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu.xml"
+            line="9"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view `DrawingView` overrides `onTouchEvent` but not `performClick`"
+        errorLine1="    override fun onTouchEvent(event: MotionEvent): Boolean {"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/zobaer53/kidsdrawingapp/DrawingView.kt"
+            line="110"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageButton"
+        errorLine2="     ~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_brush_size.xml"
+            line="9"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageButton"
+        errorLine2="     ~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_brush_size.xml"
+            line="19"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageButton"
+        errorLine2="     ~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_brush_size.xml"
+            line="29"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/recyclerview_item.xml"
+            line="21"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-v28/recyclerview_item.xml"
+            line="22"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="28"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="53"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="63"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="73"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="83"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="93"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="103"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="113"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="123"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="144"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="152"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="162"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;image&quot;, should use `@string` resource"
+        errorLine1="            android:contentDescription=&quot;image&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="170"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;My Drawings&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;My Drawings&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_my_drawings.xml"
+            line="16"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Kids Drawing App&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Kids Drawing App&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_splashscreen.xml"
+            line="39"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Please Wait...&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Please Wait...&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_custom_progress.xml"
+            line="18"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;MY Drawings&quot;, should use `@string` resource"
+        errorLine1="                android:title=&quot;MY Drawings&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu.xml"
+            line="14"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;ABOUT&quot;, should use `@string` resource"
+        errorLine1="                android:title=&quot;ABOUT&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu.xml"
+            line="19"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;EXIT&quot;, should use `@string` resource"
+        errorLine1="                android:title=&quot;EXIT&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu.xml"
+            line="24"
+            column="17"/>
+    </issue>
+
+</issues>

@@ -28,7 +28,7 @@
             android:contentDescription="image"
             android:scaleType="centerCrop" />
 
-        <com.zobaer53.kidsdrawingapp.DrawingView
+        <com.pijung.kidsdrawingapp.DrawingView
             android:id="@+id/drawing_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -132,7 +132,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/ad_container"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
@@ -170,5 +171,16 @@
             android:contentDescription="image"
             android:scaleType="fitXY"
             android:src="@drawable/ic_save" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ad_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
